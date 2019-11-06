@@ -12,3 +12,6 @@ path = "src/lib.rs"
 yew = "0.9"
 yew-router = "0.6"
 forrs-data = { git = "https://github.com/forrs/forrs-data" }
+serde = { version = "1", features = ["derive"] }
+log = "*"
+web_logger = "0.2"

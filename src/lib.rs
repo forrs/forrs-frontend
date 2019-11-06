@@ -4,8 +4,12 @@ use yew_router::{prelude::*, Switch};
 
 mod menu;
 use menu::Model as Menu;
+mod login_form;
+use login_form::Model as LoginForm;
 
-pub struct Model;
+pub struct Model {
+    show_login: bool,
+}
 
 #[derive(Debug, Switch, Clone)]
 pub enum AppRoute {
@@ -17,29 +21,43 @@ pub enum AppRoute {
     Index,
 }
 
+pub enum Msg {
+    ShowLogin,
+    HideLogin,
+}
+
 impl Component for Model {
-    type Message = ();
+    type Message = Msg;
     type Properties = ();
 
     fn create(_: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Model
+        Model { show_login: false }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
+    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+        match msg {
+            Msg::ShowLogin => {
+                self.show_login = true;
+                true
+            }
+            Msg::HideLogin => {
+                self.show_login = false;
+                true
+            }
+        }
     }
 }
 
 impl Renderable<Model> for Model {
     fn view(&self) -> Html<Self> {
         html! { <>
-            <Menu />
+            <Menu onlogin=|_| Msg::ShowLogin />
             <div class="container">
                 <section class="section">
                     <Router<AppRoute, ()>
                         render = Router::render(|switch: AppRoute| {
                             match switch {
-                                AppRoute::Index => html!{ <h1 class="title is-2">{ "Home page"}</h1> },
+                                AppRoute::Index => html!{ <h1 class="title is-2">{ "Home page" }</h1> },
                                 AppRoute::Topic { id } => html!{
                                     <h1 class="title is-2">
                                         { format!("Hello! Topic {} here.", id) }
@@ -55,6 +73,7 @@ impl Renderable<Model> for Model {
                     />
                 </section>
             </div>
+            <LoginForm active=self.show_login onclose=|_| Msg::HideLogin />
         </> }
     }
 }
