@@ -46,9 +46,7 @@ impl Component for Model {
             }
         }
     }
-}
 
-impl Renderable<Model> for Model {
     fn view(&self) -> Html<Self> {
         html! { <>
             <Menu onlogin=|_| Msg::ShowLogin />

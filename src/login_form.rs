@@ -137,9 +137,7 @@ impl Component for Model {
             false
         }
     }
-}
 
-impl Renderable<Model> for Model {
     fn view(&self) -> Html<Self> {
         use model::FormData::*;
         let (title, form) = match &self.form_data {

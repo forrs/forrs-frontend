@@ -9,8 +9,8 @@ name = "forrs_frontend"
 path = "src/lib.rs"
 
 [dependencies]
-yew = "0.9"
-yew-router = "0.6"
+yew = "0.10"
+yew-router = "0.7"
 forrs-data = { git = "https://github.com/forrs/forrs-data" }
 serde = { version = "1", features = ["derive"] }
 log = "*"

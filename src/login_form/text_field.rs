@@ -47,9 +47,7 @@ impl Component for Model {
             false
         }
     }
-}
 
-impl Renderable<Model> for Model {
     fn view(&self) -> Html<Self> {
         html! {
             <div class="field">

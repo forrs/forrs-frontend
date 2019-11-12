@@ -62,9 +62,7 @@ impl Component for Model {
     fn change(&mut self, _: Self::Properties) -> ShouldRender {
         false
     }
-}
 
-impl Renderable<Model> for Model {
     fn view(&self) -> Html<Self> {
         let (menu_class, burger_class) = if self.show_menu {
             ("navbar-menu is-active", "navbar-burger is-active")
